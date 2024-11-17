@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use a standard runner or your custom runner if configured
+    runs-on: Rajanikanth_Runner  # Use a standard runner or your custom runner if configured
 
     steps:
       # Step 1: Checkout the repository code
