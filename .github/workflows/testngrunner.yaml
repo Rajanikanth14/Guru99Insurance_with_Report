@@ -1,10 +1,10 @@
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches: Guru99Insurance
-      - main
+      - master
 
 jobs:
   build:
