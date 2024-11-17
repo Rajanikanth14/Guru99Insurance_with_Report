@@ -1,14 +1,17 @@
+name: CI/CD Pipeline
+
 on:
   push:
     branches:
       - master
   pull_request:
-    branches: Guru99Insurance
+    branches:
       - master
+      - Guru99Insurance
 
 jobs:
   build:
-    runs-on: Rajanikanth_Runner
+    runs-on: ubuntu-latest  # Use a standard runner or your custom runner if configured
 
     steps:
       # Step 1: Checkout the repository code
@@ -33,7 +36,7 @@ jobs:
 
       # Step 4: Install dependencies and run tests
       - name: Build and test with Maven
-        run: mvn clean verify
+        run: mvn clean verify  # Change this to mvn test if you want to run only tests
 
       # Step 5: Archive test results (optional)
       - name: Archive Test Results
@@ -41,4 +44,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: target/surefire-reports/
+          path: target/surefire-reports/  # Ensure this path matches your test output
