@@ -2,32 +2,32 @@
 <testng-results ignored="1" total="4" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-11T22:04:33 IST" name="Default suite" finished-at="2024-11-11T22:05:22 IST" duration-ms="49680">
+  <suite started-at="2024-11-17T15:37:14 IST" name="Suite" finished-at="2024-11-17T15:38:06 IST" duration-ms="52095">
     <groups>
     </groups>
-    <test started-at="2024-11-11T22:04:33 IST" name="Default test" finished-at="2024-11-11T22:05:22 IST" duration-ms="49680">
+    <test started-at="2024-11-17T15:37:14 IST" name="Test" finished-at="2024-11-17T15:38:06 IST" duration-ms="52095">
       <class name="tests.ValidateRegisterPage">
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-11T22:04:33 IST" name="beforeTest" finished-at="2024-11-11T22:04:38 IST" duration-ms="5587" status="PASS">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-17T15:37:14 IST" name="beforeTest" finished-at="2024-11-17T15:37:24 IST" duration-ms="9295" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="validateLoginPage()[pri:1, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-11T22:04:38 IST" name="validateLoginPage" finished-at="2024-11-11T22:04:52 IST" duration-ms="13310" status="PASS">
+        <test-method signature="validateLoginPage()[pri:1, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-17T15:37:24 IST" name="validateLoginPage" finished-at="2024-11-17T15:37:34 IST" duration-ms="10210" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validateLoginPage -->
-        <test-method signature="ValidateHomePage()[pri:2, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-11T22:04:52 IST" name="ValidateHomePage" finished-at="2024-11-11T22:04:57 IST" duration-ms="5240" status="PASS">
+        <test-method signature="ValidateHomePage()[pri:2, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-17T15:37:34 IST" name="ValidateHomePage" finished-at="2024-11-17T15:37:39 IST" duration-ms="5406" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidateHomePage -->
-        <test-method signature="ValidateRequestQuotationPage()[pri:3, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-11T22:04:57 IST" name="ValidateRequestQuotationPage" finished-at="2024-11-11T22:05:22 IST" duration-ms="25050" status="PASS">
+        <test-method signature="ValidateRequestQuotationPage()[pri:3, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-17T15:37:39 IST" name="ValidateRequestQuotationPage" finished-at="2024-11-17T15:38:06 IST" duration-ms="26683" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidateRequestQuotationPage -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-11T22:05:22 IST" name="afterTest" finished-at="2024-11-11T22:05:22 IST" duration-ms="366" status="PASS">
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:tests.ValidateRegisterPage@49912c99]" started-at="2024-11-17T15:38:06 IST" name="afterTest" finished-at="2024-11-17T15:38:06 IST" duration-ms="313" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
       </class> <!-- tests.ValidateRegisterPage -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>
