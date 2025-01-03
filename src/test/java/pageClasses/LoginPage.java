@@ -37,7 +37,7 @@ public class LoginPage
 		 
 		 g.setEditValue(txtemail, "rahulsirimalla79@gmail.com");
 		 
-		 g.setEditValue(txtpassword, "Rahul123");
+		 g.setEditValue(txtpassword, "kanth77");
 		 
 		 g.clikOnElement(btnlogin);
 		 
