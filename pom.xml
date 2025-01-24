@@ -4,7 +4,7 @@
   <artifactId>Guru99Insurance</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-  <dependencies>
+    <dependencies>
 	
 	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
@@ -102,8 +102,8 @@
 				<version>3.8.1</version>
 				<configuration>
 					<compilerVersion>21</compilerVersion>
-					<source>21</source>
-					<target>21</target>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -119,6 +119,5 @@
 		</plugins>
 	</build>
   
-  
-  
+
 </project>

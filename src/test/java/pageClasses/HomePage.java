@@ -23,7 +23,7 @@ public class HomePage
 		PageFactory.initElements(driver, this);			
 	 }
 	 
-	 public void ValidateLoginPage() throws Exception
+	 public void ValidateHomePage() throws Exception
 	 {
 		g=new GenericMethods(driver);
 		

@@ -5,9 +5,12 @@
     <classes>
       <class name="tests.ValidateRegisterPage">
         <methods>
-          <include name="afterTest"/>
-          <include name="beforeTest"/>
+          <include name="setupReport"/>
+          <include name="ValidateHomePage"/>
+          <include name="closeBrowser"/>
           <include name="ValidateRequestQuotationPage"/>
+          <include name="launchBrowser"/>
+          <include name="flushReportsAndOpen"/>
         </methods>
       </class> <!-- tests.ValidateRegisterPage -->
     </classes>
