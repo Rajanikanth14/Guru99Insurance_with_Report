@@ -6,7 +6,7 @@
       <class name="tests.testLoginPage"/>
       <class name="tests.testRequestQoute"/>
       <class name="tests.testHomePage"/>
-     
+      <class name="tests.testRegisterPage"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

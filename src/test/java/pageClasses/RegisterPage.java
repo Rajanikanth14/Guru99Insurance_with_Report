@@ -2,142 +2,152 @@ package pageClasses;
 
 
 import java.util.List;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import Framework.Reporter;
+import utilities.WebControls;
 
 
-import utilities.GenericMethods;
-
-
-
-public class RegisterPage 
+public class RegisterPage extends WebControls
 {
 	
-	
-    WebDriver driver;
-    GenericMethods g;
-	
 	@FindBy(xpath = "//a[@class='btn btn-default']")
-	WebElement btnacceptReg;
+	private static WebElement btnacceptReg;
 	
 	@FindBy(id = "user_title")
-	WebElement Title;
+	private static WebElement btnTitle;
 	
 	@FindBy(id = "user_firstname")
-	WebElement txtfirstname;
+	private static WebElement txtfirstname;
 	
 	@FindBy(id = "user_surname")
-	WebElement txtsurname;
+	private static WebElement txtsurname;
 	
 	@FindBy(id = "user_phone")
-	WebElement txtphone;
+	private static WebElement txtphone;
 	
 	@FindBy(id = "user_dateofbirth_1i")
-	WebElement selyear;
+	private static WebElement selyear;
 	
 	@FindBy(id = "user_dateofbirth_2i")
-	WebElement selmonth;
+	private static WebElement selmonth;
 	
 	@FindBy(id = "user_dateofbirth_3i")
-	WebElement seldate;
+	private static WebElement seldate;
 	
 	@FindBy(xpath = "//input[@type='radio']")
-	List<WebElement> selradio;
+	private static List<WebElement> selradio;
 	
 	@FindBy(id = "user_licenceperiod")
-	WebElement sellicenceperiod;
+	private static WebElement sellicenceperiod;
 		
 	@FindBy(id = "user_occupation_id")
-	WebElement seloccupation;
+	private static WebElement seloccupation;
 	
 	@FindBy(id = "user_address_attributes_street")
-	WebElement txtaddress;
+	private static WebElement txtaddress;
 	
 	@FindBy(id = "user_address_attributes_city")
-	WebElement txtCity;
+	private static WebElement txtCity;
 	
 	@FindBy(id = "user_address_attributes_county")
-	WebElement txtcountry;
+	private static WebElement txtcountry;
 	
 	@FindBy(id = "user_address_attributes_postcode")
-	WebElement txtpostcode;
+	private static WebElement txtpostcode;
 	
 	@FindBy(id = "user_user_detail_attributes_email")
-	WebElement txtemail;
+	private static WebElement txtemail;
 	
 	@FindBy(id = "user_user_detail_attributes_password")
-	WebElement txtPassword;
+	private static WebElement txtPassword;
 	
 	@FindBy(id = "user_user_detail_attributes_password_confirmation")
-	WebElement txtConfirmPassword;
+	private static WebElement txtConfirmPassword;
 		
 	@FindBy(xpath = "//input[@name='submit']")
-	WebElement btncreate;
+	private static WebElement btncreate;
 	
 	
+	public void addRegisterPage(String Title,String Firstname,String Surname, String Phone,String Dob_Y,String Dob_M, String Dob_D,String Licence_Period, String Occupation,String Add_Street, String City, String County, String Postcode,String Email,String Password, String Confirmpassword) throws InterruptedException {
 		
-	public RegisterPage(WebDriver driver)
-	{
-		this.driver = driver;
+		boolean retVal;
 		
-		PageFactory.initElements(driver, this);			
+		retVal = clickElement(btnacceptReg);
+		Reporter.log(retVal,"Clicked on Register Tab Succefully in Guru99 Insurance page",
+				"Failed to Clicked on Register Tab in Guru99 Insurance page");
+		
+		retVal = selectItemWithText(btnTitle, Title);
+		Reporter.log(retVal,"Selected the Title from dropdrown list Succefully in Guru99 Insurance Register page",
+				"Failed to Select the Title from dropdrown list in Guru99 Insurance Register page");
+		 
+		retVal= setEditValue(txtfirstname, Firstname);
+		Reporter.log(retVal,"Customer First name entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Customer First name in Guru99 Insurance Register page");
+		
+        retVal= setEditValue(txtsurname, Surname);
+		Reporter.log(retVal,"Customer Surname entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Customer Surname in Guru99 Insurance Register page");
+		
+        retVal= setEditValue(txtphone, Phone);
+		Reporter.log(retVal,"Customer Phone number entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Phone Number in Guru99 Insurance Register page");
+		
+        retVal = selectItemWithText(selyear, Dob_Y);
+		Reporter.log(retVal,"Selected the Year of birth from dropdrown list Succefully in Guru99 Insurance Register page",
+				"Failed to Select the Year of birth from dropdrown list in Guru99 Insurance Register page");
+		
+		retVal = selectItemWithText(selmonth, Dob_M);
+		Reporter.log(retVal,"Selected the Month of birth from dropdrown list Succefully in Guru99 Insurance Register page",
+					"Failed to Select the Month of birth month from dropdrown list in Guru99 Insurance Register page");
+			
+		retVal = selectItemWithText(seldate, Dob_D);
+		Reporter.log(retVal,"Selected the Date of birth  from dropdrown list Succefully in Guru99 Insurance Register page",
+						"Failed to Select the Date of birth from dropdrown list in Guru99 Insurance Register page");
+		
+		retVal = selectItemWithText(sellicenceperiod, Licence_Period);
+		Reporter.log(retVal,"Selected the Licence Period Succefully in Guru99 Insurance Register page",
+						"Failed to Select Licence Period in Guru99 Insurance Register page");
+		
+		retVal = selectItemWithText(seloccupation, Occupation);
+		Reporter.log(retVal,"Selected the Occupation Succefully in Guru99 Insurance Register page",
+						"Failed to Select Occupation in Guru99 Insurance Register page");
+		
+        retVal= setEditValue(txtaddress, Add_Street);
+		Reporter.log(retVal,"Customer Address Street entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Customer Address Street in Guru99 Insurance Register page");
+		
+		retVal = setEditValue(txtCity, City);
+		Reporter.log(retVal,"City entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter City in in Guru99 Insurance Register page");
+		
+		retVal = setEditValue(txtcountry, County);
+		
+		Reporter.log(retVal,"Country name entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Country name in Guru99 Insurance Register page");
+		
+		retVal = setEditValue(txtpostcode, Postcode);
+		
+		Reporter.log(retVal,"Postcode entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Postcode in Guru99 Insurance Register page");
+		
+		retVal = setEditValue(txtemail, Email);
+		Reporter.log(retVal,"Email Id entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Email Id in Guru99 Insurance Register page");
+		
+		retVal = setEditValue(txtPassword, Password);
+		Reporter.log(retVal,"Password entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Password in Guru99 Insurance Register page");
+		
+		retVal = setEditValue(txtConfirmPassword, Confirmpassword);
+		Reporter.log(retVal,"Confirm Password entered Succefully in Guru99 Insurance Register page",
+				"Failed to Enter Confirm Password in Guru99 Insurance Register page");
+		
+		retVal = clickElement(btncreate);
+
+		Reporter.log(retVal, "Clicked on create Button Succefully in Guru99 Insurance Register page",
+				"Failed to Click on create Button in Guru99 Insurance Register page");
+					
 	}
-	
-	
-	public void ValidateRegisterPage() throws Exception
-	{
-		
-		g=new GenericMethods(driver);
-		
-		g.clikOnElement(btnacceptReg);
-		
-		g.selectItemWithText(Title,"Father");
-		
-		g.setEditValue(txtfirstname, "Rajanikanth");
-		
-		g.setEditValue(txtsurname, "Sirimalla");
-		
-		g.setEditValue(txtphone, "8106291992");
-		
-		g.selectItemWithText(selyear,"1993");
-		
-		g.selectItemWithText(selmonth,"February");
-		
-		g.selectItemWithText(seldate,"9");
-		
-		g.radioBoxSelect(selradio, "Provisional");
-		
-		g.selectItemWithText(sellicenceperiod, "2");
-		
-		g.selectItemWithText(seloccupation, "Student");
-		
-		g.setEditValue(txtaddress, "Hanamkonda");
-		
-		g.setEditValue(txtCity, "Hanamkonda");
-		
-		g.setEditValue(txtcountry, "India"); 
-		
-		g.setEditValue(txtpostcode, "506002");
-		
-		g.setEditValue(txtemail, "rajnikanths7@gmail.com");
-		
-		g.setEditValue(txtPassword, "Tester123");
-		
-		g.setEditValue(txtConfirmPassword, "Tester123");
-		
-	//	g.clikOnElement(btncreate);
-		
-		Thread.sleep(3000);
-		
-	}
-	
-	
-	
-	
-	
-	
 
 }

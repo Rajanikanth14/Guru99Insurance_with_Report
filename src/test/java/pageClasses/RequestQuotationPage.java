@@ -1,20 +1,13 @@
 package pageClasses;
 
 import java.util.List;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import Framework.Reporter;
+import utilities.WebControls;
 
-import utilities.GenericMethods;
-
-public class RequestQuotationPage 
+public class RequestQuotationPage extends WebControls
 {
-	WebDriver driver;
-	GenericMethods g;
-	 
-	 
 	@FindBy(id= "ui-id-2")
 	WebElement linkaccept;
 	
@@ -54,43 +47,56 @@ public class RequestQuotationPage
 	@FindBy(xpath= "//input[@name='submit']")
 	WebElement btnsmt;
 	
-	public RequestQuotationPage(WebDriver driver)
+	public void ValidateRequestQuotationPage(String Breakdowncover, String incidents,String Registration, String Annualmileage,String Estimatedvalue, String ParkingLocation,String DOY, String DOM,String DOD) throws InterruptedException 
 	{
-		this.driver = driver;
+		boolean retVal;
+		
+		retVal = clickElement(linkaccept);
+		Reporter.log(retVal, "Clicked on Request Quotation Button Succefully",
+				             "Failed to Click on Request Quotation Button");
+		
+		retVal = selectItemWithText(selBreakdowncover, Breakdowncover);
+		Reporter.log(retVal,"Selected the Breakdown cover from dropdrown list Succefully",
+					         "Failed to Select the Breakdown cover from dropdrown list");
+		
+		
+		retVal = setEditValue(txtincidents, incidents);
+		Reporter.log(retVal, "incidents entered Successfully",
+				             "Failed to Enter incidents value");
+		
+		retVal = setEditValue(txtRegistration, Registration);
+		Reporter.log(retVal, "Registration entered Successfully",
+				             "Failed to Enter Registration value");
+		
+		retVal = setEditValue(txtAnnualmileage, Annualmileage);
+		Reporter.log(retVal, "Annual mileage entered Successfully",
+				             "Failed to Enter Annual mileage value");
+		
+		retVal = setEditValue(txtstimatedvalue, Estimatedvalue);
+		Reporter.log(retVal, "Estimated value entered Successfully",
+				             "Failed to Enter Estimated value value");
+		
+		retVal = selectItemWithText(selParking, ParkingLocation);
+		Reporter.log(retVal, "Selected the Parking Location from dropdrown list Successfully",
+				             "Failed to Select the Parking Location from dropdrown list");
+		
+		retVal = selectItemWithText(selyear, DOY);
+		Reporter.log(retVal,"Selected the Year of birth from dropdrown list Successfully",
+					"Failed to Select the Year of birth from dropdrown list");
 			
-		PageFactory.initElements(driver, this);			
-	 }
-	 
-	 public void ValidateRequestQuotationPage() throws Exception
-	 {
-		g=new GenericMethods(driver);
+		retVal = selectItemWithText(selmonth, DOM);
+		Reporter.log(retVal,"Selected the Month of birth from dropdrown list Successfully",
+						"Failed to Select the Month of birth month from dropdrown list");
+				
+		retVal = selectItemWithText(seldate, DOD);
+		Reporter.log(retVal,"Selected the Date of birth  from dropdrown list Successfully",
+							"Failed to Select the Date of birth from dropdrown list");
 		
-		g.clikOnElement(linkaccept);
+		retVal = clickElement(btnsmt);
+		Reporter.log(retVal, "Clicked on Save Quotation Button Successfully",
+				             "Failed to Click on Save Quotation Button");
 		
-		g.verifyText(txtverify, "Request a quotation");
-		
-		g.radioBoxSelect(selradio, "YES");
-		
-		g.setEditValue(txtincidents, "12345");
-		
-		g.setEditValue(txtRegistration, "12345");
-		
-		g.setEditValue(txtAnnualmileage, "12345");
-		
-		g.setEditValue(txtstimatedvalue, "12345");
-		
-		g.selectItemWithText(selParking, "Locked Garage");
-		
-		g.selectItemWithText(selyear, "2018");
-		
-		g.selectItemWithText(selmonth, "April");
-		
-		g.selectItemWithText(seldate, "14");
-		
-		g.clikOnElement(btnsmt);
-		
-		// This is
-		
-	 }
+	}
+	
 
 }

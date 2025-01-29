@@ -1,35 +1,34 @@
 package tests;
 
+import java.util.HashMap;
+
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import Framework.Excellib;
 import pageClasses.HomePage;
 import pageClasses.LoginPage;
-import pageClasses.RegisterPage;
-import utilities.BaseDriver;
-import utilities.GenericMethods;
+import utilities.BaseTestCalss;
 
-public class testHomePage extends BaseDriver 
+
+public class testHomePage extends BaseTestCalss 
 {
-    GenericMethods g;
-	
-	LoginPage l;
-	
-	HomePage h;
-	
 	@Test
-	public void ValidateHomePage() throws Exception
+	public static void TC_003_Insurance_HomePage() throws Exception
 	{
-		g = new GenericMethods(driver);
+        String filepath= TESTDATA_PATH + TESTDATA_FILE;
 		
-        l= new LoginPage(driver);
-    		
-		l.ValidateLoginPage();
+		HashMap<String, String> data=Excellib.getRowData2(filepath, "Login", "TC_001_Insurance_LoginPage");
+				
+		LoginPage glogin=PageFactory.initElements(driver, LoginPage.class);
+				
+		glogin.loginPage(data.get("Uname"), data.get("Password"));
+					
+		HomePage ghome=PageFactory.initElements(driver, HomePage.class);
 		
-		h= new HomePage(driver);
+		ghome.ValidateHomePage();
 		
-		h.ValidateHomePage();
 		
-		Thread.sleep(3000);
 	}
 
 }

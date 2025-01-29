@@ -3,16 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.ValidateRegisterPage">
+      <class name="tests.testHomePage">
         <methods>
+          <include name="TC_001_Insurance_HomePage"/>
           <include name="setupReport"/>
-          <include name="ValidateHomePage"/>
-          <include name="closeBrowser"/>
-          <include name="ValidateRequestQuotationPage"/>
           <include name="launchBrowser"/>
           <include name="flushReportsAndOpen"/>
+          <include name="closeBrowser"/>
         </methods>
-      </class> <!-- tests.ValidateRegisterPage -->
+      </class> <!-- tests.testHomePage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

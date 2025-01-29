@@ -1,36 +1,30 @@
 package pageClasses;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import Framework.Reporter;
+import utilities.WebControls;
 
-import utilities.GenericMethods;
-
-public class HomePage 
+ 
+public class HomePage extends WebControls
 {
-	WebDriver driver;
-	GenericMethods g;
-	 
-	 
+	
 	@FindBy(xpath = "//div[contains(text(),\"Signed\")]//following::h4")
 	WebElement txtverify;
 	
-	public HomePage(WebDriver driver)
-	{
-		this.driver = driver;
-			
-		PageFactory.initElements(driver, this);			
-	 }
-	 
-	 public void ValidateHomePage() throws Exception
-	 {
-		g=new GenericMethods(driver);
+	public void ValidateHomePage(){
+
+		boolean retVal;
+
+		retVal = verifyText(txtverify, "rahulsirimalla79@gmail.com");
+		Reporter.log(retVal, "Verified Text Succefully in Guru99 Insurance Home page",
+				"Failed to verify Text in Guru99 Insurance Home page");
 		
-		g.verifyText(txtverify, "rahulsirimalla79@gmail.com");
-		
-		
-	 }
+	
+
+	}
+	
+	
 
 
 }

@@ -1,9 +1,8 @@
 package utilities;
-import java.io.File;
+
 import java.lang.reflect.Method;
 import java.time.Duration;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,9 +13,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import Config.Configuration;
-import Framework.Reporter1;
+import Framework.Reporter;
 
-public class BaseDriver extends Configuration {
+public class BaseTestCalss extends Configuration {
 
 	// =========================================================================
 
@@ -24,7 +23,7 @@ public class BaseDriver extends Configuration {
 
 	public void setupReport() {
 		System.out.println("*************** Intializing Test Suite**************");
-		Reporter1.initializeReports();
+		Reporter.initializeReports();
 
 		System.out.println("*************** Test Suite is initialized succefully**************");
 
@@ -39,7 +38,7 @@ public class BaseDriver extends Configuration {
 	{
 		CURRENT_TESTCASE=method.getName();
 		
-		Reporter1.startTest(CURRENT_TESTCASE);
+		Reporter.startTest(CURRENT_TESTCASE);
 		
 		System.out.println("<<TestStart>> TestCase Name " + CURRENT_TESTCASE + "<<TestStart>>");
 		
@@ -86,7 +85,7 @@ public class BaseDriver extends Configuration {
 		
 		System.out.println("Close Browser is initiated");
 		
-		Reporter1.closeTest();
+		Reporter.closeTest();
 		driver.close();
 		System.out.println("<<TestEnd>> TestCase Name " + CURRENT_TESTCASE + "<<TestEnd>>");
 		System.out.println();
@@ -102,9 +101,10 @@ public class BaseDriver extends Configuration {
 		try
 
 		{
-			Reporter1.flushReport();
+			Reporter.flushReport();
+		
 			Thread.sleep(2000);
-
+	
 		} 
 		catch (Exception e) 
 		{
@@ -113,8 +113,9 @@ public class BaseDriver extends Configuration {
 		}
 
 		driver = new ChromeDriver();
+//		driver=new EdgeDriver();
 		driver.manage().window().maximize();
-		driver.get(Reporter1.resultfile);
+		driver.get("file:///"+Reporter.resultfile.replace("\\", "/"));
 		driver.navigate().refresh();
 
 	}

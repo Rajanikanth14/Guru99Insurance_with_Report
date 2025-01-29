@@ -25,7 +25,7 @@ public static WebDriver driver;
 	
 	public static String RESULTS_PATH =System.getProperty("user.dir") + "\\Reports\\";
 	
-	public static String RESULTS_FILE="\\Report.html";
+	public static String RESULTS_FILE="\\Insurance_report.html";
 	
 	public static  int MAX_WAIT_TIME=10;
 	
