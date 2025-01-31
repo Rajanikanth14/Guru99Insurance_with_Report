@@ -7,7 +7,8 @@ on:
   pull_request:
     branches:
       - master
-      - Guru99Insurance
+      - Guru99Insurance_with_Report
+
 
 jobs:
   build:
