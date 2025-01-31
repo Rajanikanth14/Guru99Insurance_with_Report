@@ -9,40 +9,48 @@ on:
       - master
       - Guru99Insurance_with_Report
 
-
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use a standard runner or your custom runner if configured
+    runs-on: ubuntu-latest  # Change if using a self-hosted runner
 
     steps:
       # Step 1: Checkout the repository code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2: Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17' # Change to your required Java version
-          distribution: 'temurin' # You can choose 'zulu', 'adopt', etc.
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven  # Automatically caches dependencies
 
-      # Step 3: Cache Maven dependencies
+      # Step 3: Cache Maven dependencies (Optional, handled above)
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          key: maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            ${{ runner.os }}-m2
+            maven-
 
       # Step 4: Install dependencies and run tests
       - name: Build and test with Maven
-        run: mvn clean verify  # Change this to mvn test if you want to run only tests
+        run: mvn clean verify
 
-      # Step 5: Archive test results (optional)
+      # Step 5: Archive Test Results (Fixed version)
       - name: Archive Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # ✅ Updated version
         with:
           name: test-results
-          path: target/surefire-reports/  # Ensure this path matches your test output
+          path: target/surefire-reports/
+
+      # Step 6: Store Reports (Fixed version)
+      - name: Archive Extent/Allure Reports
+        if: always()
+        uses: actions/upload-artifact@v4  # ✅ Updated version
+        with:
+          name: test-reports
+          path: target/reports/  # Adjust the path based on your framework
