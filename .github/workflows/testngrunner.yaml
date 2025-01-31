@@ -25,6 +25,15 @@ jobs:
           sudo apt update
           sudo apt install -y google-chrome-stable
 
+      - name: Install Xvfb (Virtual Display for GUI)
+        run: sudo apt install -y xvfb
+
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1920x1080x24 &
+
+      - name: Set DISPLAY environment variable
+        run: echo "DISPLAY=:99" >> $GITHUB_ENV
+
       - name: Verify Chrome Installation
         run: google-chrome --version
 
