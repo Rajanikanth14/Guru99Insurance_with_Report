@@ -47,3 +47,20 @@ jobs:
 
       - name: Run Selenium Tests (Visible Browser)
         run: mvn test
+
+      - name: Generate HTML Test Report
+        run: mvn surefire-report:report-only  # This generates the HTML test result
+
+      - name: Set up mutt for email
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mutt
+
+      - name: Send email with HTML result
+        run: |
+          # Send the email with the HTML test results
+          mutt -s "Selenium Test Results" -e "set content_type=text/html" \
+          -a target/site/surefire-report.html -- kodamanusha1990@gmail.com < target/site/surefire-report.html
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
