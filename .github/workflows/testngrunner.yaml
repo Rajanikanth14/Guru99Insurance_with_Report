@@ -36,5 +36,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
-      - name: Run Selenium Tests
+      - name: Run Selenium Tests (Visible Browser)
         run: mvn test
