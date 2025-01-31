@@ -1,56 +1,40 @@
-name: CI/CD Pipeline
+name: Selenium Tests on Chrome
 
 on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
       - Guru99Insurance_with_Report
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Change if using a self-hosted runner
+  test:
+    runs-on: ubuntu-latest  # Linux machine with Chrome support
 
     steps:
-      # Step 1: Checkout the repository code
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      # Step 2: Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
           distribution: 'temurin'
-          cache: maven  # Automatically caches dependencies
+          java-version: '17'
 
-      # Step 3: Cache Maven dependencies (Optional, handled above)
+      - name: Install Chrome
+        run: |
+          sudo apt update
+          sudo apt install -y google-chrome-stable
+
+      - name: Verify Chrome Installation
+        run: google-chrome --version
+
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            maven-
+            ${{ runner.os }}-m2
 
-      # Step 4: Install dependencies and run tests
-      - name: Build and test with Maven
-        run: mvn clean verify
-
-      # Step 5: Archive Test Results (Fixed version)
-      - name: Archive Test Results
-        if: always()
-        uses: actions/upload-artifact@v4  # ✅ Updated version
-        with:
-          name: test-results
-          path: target/surefire-reports/
-
-      # Step 6: Store Reports (Fixed version)
-      - name: Archive Extent/Allure Reports
-        if: always()
-        uses: actions/upload-artifact@v4  # ✅ Updated version
-        with:
-          name: test-reports
-          path: target/reports/  # Adjust the path based on your framework
+      - name: Run Selenium Tests
+        run: mvn test
