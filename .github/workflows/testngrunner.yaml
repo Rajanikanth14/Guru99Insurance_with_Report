@@ -21,7 +21,8 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
     - name: Clean up old reports
-      run: rm -rf Reports/*
+      run: Remove-Item -Recurse -Force Reports\* || exit 0
+      shell: pwsh
     - name: Install Maven dependencies
       run: mvn install -DskipTests
 
