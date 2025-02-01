@@ -27,11 +27,11 @@ jobs:
     - name: Run TestNG tests
       run: mvn test
 
-    # - name: Archive TestNG HTML Report
-    #   if: success()
-    #   uses: actions/upload-artifact@v3.2.0
-    #   with: 
-    #     name : TestNG-HTML-Report
-    #     path: Reports/*/Insurance_report.html
+    - name: Archive TestNG HTML Report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with: 
+         name : TestNG-HTML-Report
+         path: Reports/**/Insurance_report.html
        
         
