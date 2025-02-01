@@ -27,3 +27,10 @@ jobs:
 
     - name: Run TestNG tests
       run: mvn test -Dsurefire.suiteXmlFiles=src/test/java/testng.xml
+
+    - name: Archive test results
+      if: always() # Ensures this runs even if tests fail
+      uses: actions/upload-artifact@v3
+      with:
+       name: test-results
+       path: Reports/*/Insurance_report.html # Adjust path based on your output directory
