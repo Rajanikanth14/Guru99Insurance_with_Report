@@ -1,4 +1,5 @@
 name: Run TestNG Tests
+
 on:
   push:
     branches:
@@ -12,29 +13,44 @@ jobs:
     runs-on: naniRunner
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-    - name: Clean up old reports
-      run: rd/s/q Reports
-      shell: cmd
-      
-    - name: Install Maven dependencies
-      run: mvn install -DskipTests
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
 
-    - name: Run TestNG tests
-      run: mvn test
+      - name: Clean up old reports
+        run: rd /s /q Reports
+        shell: cmd
 
-    - name: Archive TestNG HTML Report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with: 
-         name : TestNG-HTML-Report
-         path: Reports/**/Insurance_report.html
-       
-        
+      - name: Install Maven dependencies
+        run: mvn install -DskipTests
+
+      - name: Run TestNG tests
+        run: mvn test
+
+      - name: Archive TestNG HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestNG-HTML-Report
+          path: Reports/**/Insurance_report.html
+
+  send_email:
+    runs-on: naniRunner
+    needs: build  # Ensures the email job runs after the `build` job
+    steps:
+      - name: Send Email Notification
+        uses: mattn/actions-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "GitHub Actions Notification - Test Execution Completed"
+          body: "Your GitHub Actions workflow has completed successfully. Please check the attached TestNG report."
+          to: ${{ secrets.TO_EMAIL }}
+          from: "GitHub Actions <${{ secrets.SMTP_USERNAME }}>"
