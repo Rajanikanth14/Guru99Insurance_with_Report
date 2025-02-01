@@ -47,7 +47,7 @@ jobs:
         uses: mattn/actions-send-mail@v3
         with:
           server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: 587
+          server_port: 465
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "GitHub Actions Notification - Test Execution Completed"
