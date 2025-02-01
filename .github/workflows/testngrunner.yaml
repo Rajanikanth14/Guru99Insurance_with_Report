@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - Guru99Insurance_with_Report
   pull_request:
     branches:
       - main
