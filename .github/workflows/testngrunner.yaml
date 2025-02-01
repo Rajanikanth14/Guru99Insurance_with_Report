@@ -21,8 +21,17 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    # - name: Install Maven dependencies
-    #   run: mvn install
+    - name: Install Maven dependencies
+      run: mvn install -DskipTests
 
     - name: Run TestNG tests
       run: mvn test
+
+    - name: Archive TestNG HTML Report
+      if: success()
+      uses: actions/upload-artifact@v3
+      with: 
+        name : TestNG-HTML-Report
+        path: Reports/*/Insurance_report.html
+       
+        
