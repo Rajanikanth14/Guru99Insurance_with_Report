@@ -20,7 +20,8 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '21'
-
+    - name: Clean up old reports
+      run: rm -rf Reports/*
     - name: Install Maven dependencies
       run: mvn install -DskipTests
 
