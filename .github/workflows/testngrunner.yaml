@@ -1,12 +1,11 @@
 name: Run TestNG Tests
-
 on:
   push:
     branches:
       - master
-  # pull_request:
-  #   branches:
-  #     - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -22,8 +21,8 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Install Maven dependencies
-      run: mvn install
+    # - name: Install Maven dependencies
+    #   run: mvn install
 
     - name: Run TestNG tests
       run: mvn test
