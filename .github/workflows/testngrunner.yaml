@@ -13,26 +13,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Java
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: maven  # Automatically caches Maven dependencies
 
-      # Cache Maven dependencies
-      - name: Cache Maven packages
-        uses: actions/cache@v3
+      - name: Build and Run Tests
+        run: mvn clean verify
+
+      # Save test results as artifacts for debugging
+      - name: Upload Test Reports
+        if: failure()
+        uses: actions/upload-artifact@v3
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml')}}
-          restore-keys: |
-            ${{ runner.os }}-m2-
-
-      # Build the project and run tests
-      - name: Run Maven tests
-        run: mvn test
+          name: test-reports
+          path: target/surefire-reports/
