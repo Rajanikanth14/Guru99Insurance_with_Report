@@ -1,66 +1,56 @@
-name: Selenium Tests on Chrome
+name: Selenium Tests
 
 on:
   push:
     branches:
-      - master
+      - main
       - Guru99Insurance_with_Report
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Linux machine with Chrome support
+    runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Set up Java
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '17'
+          distribution: 'temurin'
 
-      - name: Install Chrome
-        run: |
-          sudo apt update
-          sudo apt install -y google-chrome-stable
+      # Install dependencies and build the project
+      - name: Build with Maven
+        run: mvn clean install
 
-      - name: Install Xvfb (Virtual Display for GUI)
-        run: sudo apt install -y xvfb
-
-      - name: Start Xvfb
-        run: Xvfb :99 -screen 0 1920x1080x24 &
-
-      - name: Set DISPLAY environment variable
-        run: echo "DISPLAY=:99" >> $GITHUB_ENV
-
-      - name: Verify Chrome Installation
-        run: google-chrome --version
-
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2
-
-      - name: Run Selenium Tests (Visible Browser)
+      # Run Selenium tests
+      - name: Run Selenium Tests
         run: mvn test
 
-      - name: Generate HTML Test Report
-        run: mvn surefire-report:report-only  # This generates the HTML test result
+      # Archive test reports
+      - name: Archive test reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: target/surefire-reports/
 
-      - name: Set up mutt for email
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mutt
-
-      - name: Send email with HTML result
-        run: |
-          # Send the email with the HTML test results
-          mutt -s "Selenium Test Results" -e "set content_type=text/html" \
-          -a target/site/surefire-report.html -- kodamanusha1990@gmail.com < target/site/surefire-report.html
-        env:
-          EMAIL: ${{ secrets.EMAIL }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      # Send email with test results
+      - name: Send email with test results
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Selenium Test Results
+          body: |
+            Selenium tests have completed. Please find the attached test report.
+          to: your-email@example.com
+          from: GitHub Actions <your-email@example.com>
+          attachments: target/surefire-reports/
