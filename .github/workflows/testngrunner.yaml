@@ -1,35 +1,23 @@
-name: Selenium Tests
+name: Selenium Test CI
 
-on:
-  push:
-    branches:
-      - main
-      - Guru99Insurance_with_Report
-  pull_request:
-    branches:
-      - main
+on: [push]
+
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
           distribution: 'temurin'
-          cache: maven  # Automatically caches Maven dependencies
+          java-version: '11'
 
-      - name: Build and Run Tests
-        run: mvn clean verify
+      - name: Build with Maven
+        run: mvn clean install
 
-      # Save test results as artifacts for debugging
-      - name: Upload Test Reports
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-reports
-          path: target/surefire-reports/
+      - name: Run Selenium Tests
+        run: mvn test
