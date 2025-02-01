@@ -21,7 +21,7 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
     - name: Clean up old reports
-      run: if exist Reports(rd/s/q Reports)
+      run: Reports(rd/s/q Reports)
       shell: cmd
       
     - name: Install Maven dependencies
