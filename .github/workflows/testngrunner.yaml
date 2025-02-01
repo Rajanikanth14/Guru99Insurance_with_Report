@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
        name: test-results
-       path: Reports/*/Insurance_report.html # Adjust path based on your output directory
+       path: Guru99Insurance_with_Report/Reports/*/Insurance_report.html # Adjust path based on your output directory
