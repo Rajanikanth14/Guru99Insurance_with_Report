@@ -25,7 +25,7 @@ jobs:
        if (Test-Path -Path Reports) {
         Remove-Item -Recurse -Force Reports
        }
-      shell: pwsh
+      shell: cmd
       
     - name: Install Maven dependencies
       run: mvn install -DskipTests
